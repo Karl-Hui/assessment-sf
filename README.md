@@ -1,6 +1,6 @@
-# Collection Breakdown
+# Public Access link
 
-A small React + Redux Toolkit app for capturing daily collection breakdowns by payment method.
+[text](https://assessment-sf.vercel.app/)
 
 ## Folder Structure
 

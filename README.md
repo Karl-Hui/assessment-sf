@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Collection Breakdown
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small React + Redux Toolkit app for capturing daily collection breakdowns by payment method.
 
-## Available Scripts
+## Folder Structure
 
-In the project directory, you can run:
+```
+src/
+  components/
+    CollectionForm.js
+    CollectionList.js
+    FormField.js
+  features/
+    collections/
+      collectionsSlice.js
+  pages/
+    CollectionPage.js
+  store/
+    store.js
+  utils/
+    formatDateValue.js
+    parseDateValue.js
+    validation.js
+  App.css
+  App.js
+  index.css
+  index.js
+```
 
-### `npm start`
+## How to Run
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Install dependencies:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+npm install
+```
 
-### `npm test`
+2. Start the app:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm start
+```
 
-### `npm run build`
+The app runs at `http://localhost:3000`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Why Redux Toolkit
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Redux Toolkit provides a predictable state container with minimal boilerplate. It offers:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `createSlice` for cohesive reducer/action definitions
+- `createAsyncThunk` for async workflows (simulated here)
+- Scalable structure that keeps UI, data, and validation cleanly separated
 
-### `npm run eject`
+## Assumptions & Tradeoffs
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- All data is stored in Redux state only, so collection entries will reset on page refresh.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Async thunks are used to simulate API behavior, allowing business logic to be separated from the view layer, which improves maintainability and supports future expansion when real API calls are introduced.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Form values are stored as strings to support partial user input and smoother editing; values are converted to numbers during validation or submission.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Due to time constraints, plain CSS was used for styling. For a more scalable and consistent design system, a utility-first approach such as Tailwind CSS would be recommended, as it promotes better isolation and reduces the risk of style conflicts.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- To preserve input precision, there is currently no restriction on the number of decimal places allowed for numeric fields. If stricter formatting is required, decimal precision (e.g., limiting to two decimal places) can be enforced at the view layer.
